@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 Loading data
 '''
 
-(x_train, _), (x_test, _) = fashion_mnist.load_data()
+(x_train, _), (x_test, _) = mnist.load_data()
 
 x_train = x_train.astype('float32') / 255.
 x_test = x_test.astype('float32') / 255.
@@ -65,9 +65,9 @@ def create_decoder():
 
 
 encoder = create_encoder()
-plot_model(encoder, to_file='encoder.png')
+
 decoder = create_decoder()
-plot_model(decoder, to_file='decoder.png')
+
 auto_input = Input(shape=(28,28,1))
 
 encoded = encoder(auto_input)
@@ -79,7 +79,6 @@ Joining encoder and decoder
 '''
 auto_encoder = Model(auto_input, decoded)
 
-plot_model(auto_encoder, to_file='encoder-decoder.png')
 
 
 
@@ -101,7 +100,7 @@ auto_encoder.compile(optimizer='adadelta', loss='binary_crossentropy')
 Start training
 '''
 auto_encoder.fit(x_train, x_train,
-                epochs=10000,
+                epochs=100,
                 batch_size=128,
                 shuffle=True,
                 validation_data=(x_test, x_test),

@@ -65,21 +65,22 @@ decoder = create_decoder()
 '''
 Loading trained models
 '''
-latest = tf.train.latest_checkpoint("/home/oso/git/Seminarios/checkpoints_encoder/")
+latest = tf.train.latest_checkpoint("/Users/luisibanezlissen/github/seminarios-main/checkpoints_encoder")
 encoder.load_weights(latest)
-latest = tf.train.latest_checkpoint("/home/oso/git/Seminarios/checkpoints_decoder/")
+latest = tf.train.latest_checkpoint("/Users/luisibanezlissen/github/seminarios-main/checkpoints_decoder")
 
 decoder.load_weights(latest)
 
 
 print(x_test[0])
 encoded_imgs = encoder.predict(x_test)
-
+print(encoded_imgs.shape)
 decoded_imgs = decoder.predict(encoded_imgs)
 
 '''
 Example functional working
 '''
+print(type(decoded_imgs))
 n = 10
 plt.figure(figsize=(20, 4))
 for i in range(1, n + 1):
