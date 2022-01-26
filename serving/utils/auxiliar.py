@@ -28,7 +28,7 @@ def create_decoder():
 def initialize():
     
     decoder = create_decoder()
-    dir = "/Users/luisibanezlissen/github/seminarios-main/checkpoints_decoder"
+    dir = "set directory here"
     latest = tf.train.latest_checkpoint(dir)
 
     decoder.load_weights(latest)
