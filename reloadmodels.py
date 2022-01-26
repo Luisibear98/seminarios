@@ -65,9 +65,9 @@ decoder = create_decoder()
 '''
 Loading trained models
 '''
-latest = tf.train.latest_checkpoint("/Users/luisibanezlissen/github/seminarios-main/checkpoints_encoder")
+latest = tf.train.latest_checkpoint("set directory here")
 encoder.load_weights(latest)
-latest = tf.train.latest_checkpoint("/Users/luisibanezlissen/github/seminarios-main/checkpoints_decoder")
+latest = tf.train.latest_checkpoint("set directory here")
 
 decoder.load_weights(latest)
 
