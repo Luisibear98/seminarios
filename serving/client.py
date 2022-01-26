@@ -48,15 +48,12 @@ encoder = create_encoder()
 '''
 Loading trained models
 '''
-latest = tf.train.latest_checkpoint("/Users/luisibanezlissen/github/seminarios-main/checkpoints_encoder")
+latest = tf.train.latest_checkpoint("set directory here")
 encoder.load_weights(latest)
 
-
-
-print(x_test[0])
 decoded_imgs = encoder.predict(x_test)
 
-url =  "http://127.0.0.1:1234/inference/"
+url =  "http://127.0.0.1:1234/inference/" #set the proper url and port
 
 
 
@@ -66,26 +63,3 @@ data = {'params': params, 'arr': decoded_imgs.tolist()}
 print(data)
 response = requests.post(url, json=data)
 print(response)
-
-'''
-Example functional working
-
-
-n = 10
-plt.figure(figsize=(20, 4))
-for i in range(1, n + 1):
-    # Display original
-    ax = plt.subplot(2, n, i)
-    plt.imshow(x_test[i].reshape(28, 28))
-    plt.gray()
-    ax.get_xaxis().set_visible(False)
-    ax.get_yaxis().set_visible(False)
-
-    # Display reconstruction
-    ax = plt.subplot(2, n, i + n)
-    plt.imshow(decoded_imgs[i].reshape(28, 28))
-    plt.gray()
-    ax.get_xaxis().set_visible(False)
-    ax.get_yaxis().set_visible(False)
-plt.savefig("output-reloaded.png")
-'''
